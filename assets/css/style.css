@@ -1,0 +1,42 @@
+.bodycontainer {
+	 border: 2px solid;
+    border-color: lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.jumbotron {
+	background-color: #00134d;
+	color: #ffffff;
+}
+
+h1 {
+	text-align: center;
+}
+
+
+#image {
+	height: 50px;
+	width: 50px;
+	float:left;
+	background-color: #ffffff;
+}
+
+.header {
+	background-color:  #00134d;
+	padding: 1px;
+	margin-top: 50px;
+	padding-left: 10px;
+	 border-radius: 5px;
+}
+
+h4{
+	color: #ffffff;
+}
+
+.articlecontainer {
+	border: 2px solid;
+    border-color: lightgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
