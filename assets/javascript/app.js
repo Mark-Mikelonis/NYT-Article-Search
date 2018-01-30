@@ -3,7 +3,7 @@ var apiKey = "4a4c9d7e7660409eb1314808b3e2080a";
 var queryUrl = "" ;
 var keyWord = "";
 var recordNumber;
-var pubDate;
+
 var beginDate;
 var endDate;
 var link;
@@ -17,9 +17,7 @@ function buildQuery(){
 	if ($("#endYear").val()){
 		queryUrl += "&end_date=" + endDate + "1231";
 	}
-	if(recordNumber === 15){
-		queryUrl += "&offset=1";
-	}
+	
 	console.log(queryUrl);
 	runQuery();
 }
@@ -29,11 +27,33 @@ function runQuery() {
         method: "GET"
     }).done(function(response) {
         console.log(response);
-        if(recordNumber == 15){
-			queryUrl += "&offset=1";
-			recordNumber = "";
-			runQuery();
-		}
+        var results = response.response;
+
+        for(var i=0;i<recordNumber;i++){
+        	var headline = results.docs[i].headline.main;
+        	var pubDate = results.docs[i].pub_date;
+        	link = results.docs[i].web_url;
+        	newCard = $("<div>");
+        	newCard.addClass("card w-50");
+        	newCardBody = $("<div>");
+        	newCardBody.addClass("card-body");
+        	newH5 = $("<h5>");
+        	newH5.addClass("card-title");
+        	newH5.text(headline);
+        	newP = $("<p>");
+        	newP.addClass("card-text");
+        	newP.text(pubDate);
+        	newA = $("<a>");
+        	newA.attr("href", link);
+        	newA.text(link);
+
+        	newCardBody.append(newH5);
+        	newCardBody.append(newP);
+        	newCardBody.append(newA);
+        	newCard.append(newCardBody);
+        	$(".bodyContainer").append(newCard);
+
+        }
         // $("#article-view").append("<p>" + response.response.docs[1].headline.main + "</p>");
     });
 }
