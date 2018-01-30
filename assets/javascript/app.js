@@ -30,6 +30,7 @@ function runQuery() {
         var results = response.response;
 
         for(var i=0;i<recordNumber;i++){
+        	console.log(recordNumber);
         	var headline = results.docs[i].headline.main;
         	var pubDate = results.docs[i].pub_date;
         	link = results.docs[i].web_url;
@@ -42,9 +43,16 @@ function runQuery() {
         	newH5.text(headline);
         	newP = $("<p>");
         	newP.addClass("card-text");
-        	newP.text(pubDate);
+        	console.log(typeof pubDate);
+        	console.log(pubDate);
+        	var tempDate = new Date(pubDate);
+        	if (tempDate === "Invalid Date"){
+        		tempDate = "Publish Date Unavailable";
+        	}
+        	newP.text(tempDate);
         	newA = $("<a>");
         	newA.attr("href", link);
+        	newA.attr("target", "_blank");
         	newA.text(link);
 
         	newCardBody.append(newH5);
